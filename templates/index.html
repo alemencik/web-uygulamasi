@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Veri Giriş Formu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Parke Formu</h2>
+    <form action="/submit" method="POST">
+        <div class="form-group">
+            <label for="input1">Metrekare:</label>
+            <input type="text" name="input1" id="input1" placeholder="Metrekare girin" value="">
+        </div>
+
+        <div class="form-group">
+            <label for="input2">Profil (adet):</label>
+            <input type="number" name="input2" id="input2" value="2">
+        </div>
+
+        <div class="form-group">
+            <label for="input3">Çekomastik (adet):</label>
+            <input type="number" name="input3" id="input3" value="2">
+        </div>
+
+        <div class="form-group">
+            <label for="input4">Silikon (adet):</label>
+            <input type="number" name="input4" id="input4" value="1">
+        </div>
+
+        <div class="form-group">
+            <label for="select1">Parke Seçimi:</label>
+            <select name="select1" id="select1">
+                {% for i in range(1, 19) %}
+                    <option value="{{ i }}" {% if i == 3 %}selected{% endif %}>{{ i }} nolu parke</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="select2">Süpürgelik Seçimi:</label>
+            <select name="select2" id="select2">
+                <option value="süpürgelik 1" selected>6 cm</option>
+                <option value="süpürgelik 2">7 cm</option>
+                <option value="süpürgelik 3">8 cm</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="select3">Şilte Seçimi:</label>
+            <select name="select3" id="select3">
+                <option value="şilte 1" selected>2 mm</option>
+                <option value="şilte 2">3 mm</option>
+                <option value="şilte 3">5 mm</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="active1">Nakliye:</label>
+            <input type="checkbox" name="active1" id="active1" value="1" checked>
+        </div>
+
+        <div class="form-group">
+            <label for="active2">Montaj:</label>
+            <input type="checkbox" name="active2" id="active2" value="1" checked>
+        </div>
+
+        <button type="submit">Gönder</button>
+    </form>
+
+    {% if sonuc %}
+        <div id="outbox">{{ sonuc }}</div>
+    {% endif %}
+</body>
+</html>
